@@ -1,0 +1,23 @@
+<h1>Estados</h1>
+<h3 *ngIf="!estados">
+    Carregando...
+</h3>
+<table *ngIf="estados">
+    <thead>
+        <th>Nome</th>
+        <th>Ações</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of estados">
+            <td (click)="selectEstado(item)">{{item.nome}}</td>
+            <td>
+                <button type="button" (click)="delete(item)" class="btn btn-danger">Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button type="button" (click)="newEstado()" class="btn btn-primary">Novo</button>
+
+<div *ngIf="selectedEstado">
+    <estado-detail (estadoAdded)="onEstadoAdded($event)" [estado]="selectedEstado"></estado-detail>
+</div>
